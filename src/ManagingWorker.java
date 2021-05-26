@@ -70,9 +70,9 @@ public class ManagingWorker {
         }
         workerHashMap=sortStudentMap;
     }
-    Worker exitById() {
+    Worker editById() {
         Scanner scanner=new Scanner(System.in);
-        System.out.println("Enter id:");
+        System.out.println("Enter id to edit:");
         String id=scanner.nextLine();
         if (findById(id)!=null) {
             System.out.println("Enter name:");
@@ -109,7 +109,7 @@ public class ManagingWorker {
                     add();
                     break;
                 case 2:
-                    if(exitById()==null){
+                    if(editById()==null){
                         System.out.println("Not thing!");
                     }
                     break;
