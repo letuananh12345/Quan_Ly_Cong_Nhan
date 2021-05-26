@@ -1,45 +1,47 @@
 import java.util.*;
 
 public class ManagingWorker {
-    HashMap<String,Worker> workerMap=null;
+    HashMap<String,Worker> workerHashMap=null;
     Scanner scanner = new Scanner(System.in);
 
     public ManagingWorker() {
-        workerMap=new HashMap<>();
+        workerHashMap=new HashMap<>();
     }
 
     public ManagingWorker(HashMap<String, Worker> hashMap) {
-        this.workerMap = hashMap;
+        this.workerHashMap = hashMap;
     }
     void disPlay(){
-        Set<String> keys= workerMap.keySet();
+        Set<String> keys= workerHashMap.keySet();
         for(String key : keys){
-            System.out.println(workerMap.get(key));
+            System.out.println(workerHashMap.get(key));
         }
     }
+    void add(Worker worker){
+        workerHashMap.put(worker.getId(),worker);
+    }
     void add(){
-        System.out.println("Enter ID:");
-        String id = scanner.nextLine();
         System.out.println("Enter Name :");
         String name = scanner.nextLine();
         System.out.println("Enter Age:");
         int age = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Enter Gender:");
+
+        System.out.println("Enter Gender<Nam or Nữ>:");
         String gender = scanner.nextLine();
         System.out.println("Enter Address:");
         String address= scanner.nextLine();
         System.out.println("Enter Part:");
         String part=scanner.nextLine();
-        Worker worker=new Worker(id,name,age,gender,address,part);
-        workerMap.put(worker.getId(),worker);
+        Worker worker=new Worker(name,age,gender,address,part);
+        workerHashMap.put(worker.getId(),worker);
     }
 
     Worker findById(String id){
-        Set<String> keySet=workerMap.keySet();
+        Set<String> keySet=workerHashMap.keySet();
         for(String key:keySet){
             if(key.equals(id)){
-                return workerMap.get(id);
+                return workerHashMap.get(id);
             }
         }
         return null;
@@ -51,10 +53,10 @@ public class ManagingWorker {
         if(findById(id)==null){
             System.out.println("Not thing ID");
         } else
-            workerMap.remove(id);
+            workerHashMap.remove(id);
     }
     void sortById(){
-        Set<Map.Entry<String,Worker>>entries=workerMap.entrySet();
+        Set<Map.Entry<String,Worker>>entries=workerHashMap.entrySet();
         List<Map.Entry<String,Worker>>entryList=new ArrayList<>(entries);
         Collections.sort(entryList, new Comparator<Map.Entry<String, Worker>>() {
             @Override
@@ -66,7 +68,7 @@ public class ManagingWorker {
         for (Map.Entry<String,Worker> entry:entryList){
             sortStudentMap.put(entry.getKey(),entry.getValue());
         }
-        workerMap=sortStudentMap;
+        workerHashMap=sortStudentMap;
     }
     Worker exitById() {
         Scanner scanner=new Scanner(System.in);

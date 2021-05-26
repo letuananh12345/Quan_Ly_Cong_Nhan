@@ -1,5 +1,7 @@
 public class Worker {
-    private String id ;
+   public static final String ST = "CON";
+   static int number = 1;
+    private String id = ST +number ;
     private String name;
     private int age;
     private String gender;
@@ -7,15 +9,17 @@ public class Worker {
     private String part;
 
     public Worker() {
+        number++;
     }
 
-    public Worker(String id, String name, int age, String gender, String address, String part) {
+    public Worker( String name, int age, String gender, String address, String part) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.address = address;
         this.part = part;
+        number ++;
 
     }
 
